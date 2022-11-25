@@ -45,11 +45,11 @@ ASimModeBase::ASimModeBase()
     refereeBP_class_ = refereeBP_class.Succeeded() ? refereeBP_class.Class : nullptr;
 }
 
-void ASimModeBase::restart() {
+void ASimModeBase::restart() 
+{
     APlayerController* player_controller = this->GetWorld()->GetFirstPlayerController();
     player_controller->RestartLevel();
 }
-
 
 void ASimModeBase::BeginPlay()
 {

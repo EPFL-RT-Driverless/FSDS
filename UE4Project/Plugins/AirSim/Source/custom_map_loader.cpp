@@ -1,6 +1,5 @@
 // This program is free software; you can redistribute it and/ormodify it under the terms of the GNU General Public License as published by the Free Software Foundation
 
-
 #include "custom_map_loader.h"
 
 static FString custom_map_path;
@@ -23,7 +22,7 @@ struct Actor {
 	float xy_variance;
 };
 
-TArray<FString> Ucustom_map_loader::ProcessFile(FString data, TArray<FTransform> & blue_cones, TArray<FTransform> & yellow_cones, TArray<FTransform> & big_orange_cones) {
+TArray<FString> Ucustom_map_loader::ProcessFile(FString data, TArray<FTransform> & blue_cones, TArray<FTransform> & yellow_cones, TArray<FTransform> & big_orange_cones, TArray<FTransform>& small_orange_cones) {
 	// Get random seed for rotation of cones
 	srand((unsigned)time(NULL));
 
@@ -78,6 +77,10 @@ TArray<FString> Ucustom_map_loader::ProcessFile(FString data, TArray<FTransform>
 
 		if (actor.type == "big_orange") {
 			big_orange_cones.Add(transform);
+		}
+
+		if (actor.type == "small_orange") {
+			small_orange_cones.Add(transform);
 		}
 	}
 
@@ -191,5 +194,9 @@ void Ucustom_map_loader::SetCustomMapPath(FString path) {
 
 
 FString Ucustom_map_loader::GetCustomMapPath() {
+	return custom_map_path;
+}
+
+FString Ucustom_map_loader::GetMapPath() {
 	return custom_map_path;
 }

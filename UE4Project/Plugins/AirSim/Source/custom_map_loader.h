@@ -8,9 +8,11 @@
 #include <cstdlib>
 #include <cmath>
 #include <vector>
+#include <string>
 
 #include "CoreMinimal.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
+
 #include "custom_map_loader.generated.h"
 
 /**
@@ -28,12 +30,11 @@ class AIRSIM_API Ucustom_map_loader : public UBlueprintFunctionLibrary
 	GENERATED_BODY()
 	
 
-
 	UFUNCTION(BlueprintCallable, Category = "custom map loader")
 		static bool FileLoadString(FString FileNameA, FString& SaveTextA);
 
 	UFUNCTION(BlueprintCallable, Category = "custom map loader")
-		static TArray<FString> ProcessFile(FString data, TArray<FTransform>& blue_cones, TArray<FTransform>& yellow_cones, TArray<FTransform> & big_orange_cones);
+		static TArray<FString> ProcessFile(FString data, TArray<FTransform>& blue_cones, TArray<FTransform>& yellow_cones, TArray<FTransform> & big_orange_cones, TArray<FTransform>& small_orange_cones);
 
 	UFUNCTION(BlueprintCallable, Category = "custom map loader")
 		static FTransform GetFinishTransform(TArray<FTransform> big_orange_cones);
@@ -44,8 +45,8 @@ class AIRSIM_API Ucustom_map_loader : public UBlueprintFunctionLibrary
 	UFUNCTION(BlueprintCallable, Category = "custom map loader")
 		static FString GetCustomMapPath();
 
-
-
-
 	static float getEuclideanDistance(Coordinate coord1, Coordinate coord2);
+
+public :
+	static FString GetMapPath();
 };

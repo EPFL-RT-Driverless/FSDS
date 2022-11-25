@@ -116,6 +116,11 @@ void RpcLibClientBase::restart()
     pimpl_->client.call("restart");
 }
 
+std::string RpcLibClientBase::getMap()
+{
+    return pimpl_->client.call("getMap").as<std::string>();
+}
+
 void RpcLibClientBase::confirmConnection(double timeout)
 {
     ClockBase* clock = ClockFactory::get();
