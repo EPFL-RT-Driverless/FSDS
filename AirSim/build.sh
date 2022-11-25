@@ -56,7 +56,7 @@ if [[ ! -d $build_dir ]]; then
     mkdir -p $build_dir
     pushd $build_dir  >/dev/null
 
-    "$CMAKE" ../cmake -DCMAKE_BUILD_TYPE=Debug \
+    "$CMAKE" ../cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_APPLE_SILICON_PROCESSOR=x86_64\
         || (popd && rm -r $build_dir && exit 1)
     popd >/dev/null
 fi
