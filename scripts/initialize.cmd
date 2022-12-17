@@ -1,6 +1,9 @@
 @echo off
 REM //---------- set up variable ----------
 setlocal
+set ROOT_DIR=%~dp0
+
+chdir /d %ROOT_DIR% 
 
 IF EXIST %USERPROFILE%\Formula-Student-Driverless-Simulator (
     echo Folder already exists

@@ -58,7 +58,7 @@ cd AirSim
 - Some libs need to be installed and compiled for linux fortunately, we did it for you. Just run the following commands:
 ```
 cd FSDS/scripts
-cp libs/librpc.a UE4Project/Plugins/AirSim/Source/AirLib/deps/rpclib/lib
+cp librpc.a UE4Project/Plugins/AirSim/Source/AirLib/deps/rpclib/lib
 ```
 - Right click on FSDS/UE4Project/FSOnline.uproject and select `Generate Visual Studio project files` 
 - Open UE4Editor 4.27 and open FSDS/UE4Project/FSOnline.uproject

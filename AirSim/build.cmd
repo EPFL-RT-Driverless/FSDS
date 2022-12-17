@@ -32,6 +32,21 @@ if "%2"=="--Release" set "buildMode=--Release"
 
 :noargs
 
+set powershell=powershell
+where powershell > nul 2>&1
+if ERRORLEVEL 1 goto :pwsh
+echo found Powershell && goto start
+:pwsh
+set powershell=pwsh
+where pwsh > nul 2>&1
+if ERRORLEVEL 1 goto :nopwsh
+set PWSHV7=1
+echo found pwsh && goto start
+:nopwsh
+echo Powershell or pwsh not found, please install it.
+goto :eof
+
+:start
 chdir /d %ROOT_DIR% 
 
 REM //---------- Check cmake version ----------
@@ -44,6 +59,44 @@ if ERRORLEVEL 1 (
     goto :buildfailed
   )
 )
+
+REM //---------- get rpclib ----------
+IF NOT EXIST external\rpclib mkdir external\rpclib
+
+set RPC_VERSION_FOLDER=rpclib-2.3.0
+IF NOT EXIST external\rpclib\%RPC_VERSION_FOLDER% (
+    REM //leave some blank lines because %powershell% shows download banner at top of console
+    ECHO(
+    ECHO(   
+    ECHO(   
+    ECHO *****************************************************************************************
+    ECHO Downloading rpclib
+    ECHO *****************************************************************************************
+    @echo on
+    if "%PWSHV7%" == "" (
+        %powershell% -command "& { [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; iwr https://github.com/rpclib/rpclib/archive/v2.3.0.zip -OutFile external\rpclib.zip }"
+    ) else (
+        %powershell% -command "iwr https://github.com/rpclib/rpclib/archive/v2.3.0.zip -OutFile external\rpclib.zip"
+    )
+    @echo off
+    
+    REM //remove any previous versions
+    rmdir external\rpclib /q /s
+
+    %powershell% -command "Expand-Archive -Path external\rpclib.zip -DestinationPath external\rpclib"
+    del external\rpclib.zip /q
+    
+    REM //Fail the build if unable to download rpclib
+    IF NOT EXIST external\rpclib\%RPC_VERSION_FOLDER% (
+        ECHO Unable to download rpclib, stopping build
+        goto :buildfailed
+    )
+)
+
+robocopy external\rpclib\%RPC_VERSION_FOLDER%  external\temp /MOVE /E /NFL /NDL /NJH /NJS /nc /ns /np
+rmdir external\rpclib /s /q
+robocopy external\temp  external\rpclib /MOVE /E /NFL /NDL /NJH /NJS /nc /ns /np
+
 
 REM //---------- Build rpclib ------------
 ECHO Starting cmake to build rpclib...
