@@ -36,9 +36,8 @@ then
         esac
     done
 else
-    echo "Creating settings files"
+    echo "Creating settings file"
     curl -O https://raw.githubusercontent.com/EPFL-RT-Driverless/FSDS/master/settings.json
-    echo "Creating settings files"
     mv settings.json $dir
 fi
 
