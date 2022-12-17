@@ -1,0 +1,13 @@
+# v1.0.0 - 2021-12-17
+- :tada: First release of FSDS
+- Creating procedure to build and start the simulator : see [here](https://github.com/EPFL-RT-Driverless/FSDS#Windows-Installation).
+- New functionnality from the forked repository :
+    - Can import small orange cones with a csv track using `small_orange`
+    - Can restart the map 
+    - Can get the name of the csv file used to load the track
+    - The car model was modified to match an electric car and fixing the maximum steering angle to 35°
+    - Creating scripts to import the settings.json file automatically 
+    - Fixing the build.cmd, build.sh and setup.sh scripts to build successfully AirSim
+    - Adding the rpclib.a library to cross-compile from Windows to Ubuntu
+    - Modifying key binds to open the console (press 'y')
+    - Increasing the size of the map custom_map
