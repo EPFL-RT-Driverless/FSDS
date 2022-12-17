@@ -10,7 +10,32 @@ For installation and more information about the ROS and python interface, [check
 
 Some more information about the project can be found [here](https://github.com/EPFL-RT-Driverless/FSDS/tree/master/docs).
 
-# <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/windows.svg" width=18px> Windows Installation 
+# <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/regular/circle-play.svg" width=18px style="webkit-filter: invert(100%); filter: invert(0.5)"> Run the simulator
+
+- Download the last released version according to your OS
+
+- For Windows :
+    ```
+    .\initialise.cmd
+    ```
+    - Start `FDSD.exe`
+
+- For Linux :
+    ```
+    ./initialise.sh
+    ./FSDS.sh
+    ```
+
+- For MacOS :
+    ```
+    ./initialise.sh
+    ```
+    - Start `FDSD.app`
+
+
+
+
+# <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/windows.svg" width=18px style="webkit-filter: invert(100%); filter: invert(0.5)"> Windows Installation 
 
 ### Prerequisites
 - [Unreal Engine 4.27](https://www.unrealengine.com/en-US/download)
@@ -33,7 +58,7 @@ build.cmd
 - When asked to rebuild the 'Blocks' and 'AirSim' modules, choose 'Yes'. This is the step where the plugin part of AirSim is compiled.
 - Enjoy the simulator!
 
-# <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width=18px> Mac Installation 
+# <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width=18px style="webkit-filter: invert(100%); filter: invert(0.5)"> Mac Installation 
 - [Unreal Engine 4.27](https://www.unrealengine.com/en-US/download)
 
 ```
@@ -51,7 +76,7 @@ cd AirSim
 - When asked to rebuild the 'Blocks' and 'AirSim' modules, choose 'Yes'. This is the step where the plugin part of AirSim is compiled.
 - Enjoy the simulator!
 
-# <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/ubuntu.svg" width=18px> Ubuntu Installation
+# <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/ubuntu.svg" width=18px style="webkit-filter: invert(100%); filter: invert(0.5)"> Ubuntu Installation
 - Unfortunatly, the forked repository doesn't build on Linux. If you want to build for Linux, you need to build via the cross-compilation method.
 - Complete all the steps of the [Windows Installation](https://github.com/EPFL-RT-Driverless/FSDS#Windows-Installation) section.
 - Install the cross-compilation toolchain for Windows. You can find the instructions [here](https://docs.unrealengine.com/4.27/en-US/SharingAndReleasing/Linux/GettingStarted/). Be sure to download the toolchain for the version 4.27 of Unreal Engine.
@@ -65,6 +90,6 @@ cp librpc.a UE4Project/Plugins/AirSim/Source/AirLib/deps/rpclib/lib
 - You can now build the project for Linux. To do so, go to  `File > Package Project > Build Configuration > Development` and then `File > Package Project > Linux > Linux`.
 - Enjoy the simulator!
 
-# <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/quote-left.svg" width=18px> Credits
+# <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/quote-left.svg" width=18px style="webkit-filter: invert(100%); filter: invert(0.5)"> Credits
 
 This project is forked from [Formula Student Driverless Simulator](https://github.com/FS-Driverless/Formula-Student-Driverless-Simulator). Based on [AirSim](https://github.com/microsoft/AirSim).
