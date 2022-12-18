@@ -31,11 +31,6 @@ if [ "$VERSION" -lt "20" ]; then
     chmod +x llvm.sh
     sudo ./llvm.sh 12
 fi
-sudo apt-get install -y clang-12 clang++-12 libc++-12-dev libc++abi-12-dev
-
-#install additional tools
-sudo apt-get install -y build-essential
-sudo apt-get install -y unzip
 
 if ! which cmake; then
     # CMake not installed
@@ -75,6 +70,25 @@ if [ ! -d "AirLib/deps/eigen3" ]; then
     rm eigen3.zip
 else
     echo "Eigen is already installed."
+fi
+
+# Download rpclib
+if [ ! -d "external/rpclib/rpclib-2.3.0" ]; then
+    echo "*********************************************************************"
+    echo "Downloading rpclib..."
+    echo "*********************************************************************"
+
+    wget https://github.com/rpclib/rpclib/archive/v2.3.0.zip
+
+    # remove previous versions
+    rm -rf "external/rpclib"
+
+    mkdir -p "external/rpclib"
+    unzip -q v2.3.0.zip -d external/rpclib
+    mv external/rpclib external/temp
+    mv external/temp/rpclib-2.3.0 external/rpclib
+    rm -rf external/temp
+    rm v2.3.0.zip
 fi
 
 popd >/dev/null

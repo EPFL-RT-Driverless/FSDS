@@ -189,6 +189,10 @@ RpcLibServerBase::RpcLibServerBase(ApiProvider* api_provider, const std::string&
         sim_world_api->restart();
         });
 
+    pimpl_->server.bind("getMap", [&]() -> std::string {
+        return getWorldSimApi()->getMap();
+        });
+
     pimpl_->server.bind("simPrintLogMessage", [&](const std::string& message, const std::string& message_param, unsigned char severity) -> void {
         getWorldSimApi()->printLogMessage(message, message_param, severity);
     });

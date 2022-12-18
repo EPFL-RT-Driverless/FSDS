@@ -6,6 +6,8 @@
 #include "DrawDebugHelpers.h"
 #include "Referee.h"
 
+#include "custom_map_loader.h"
+
 WorldSimApi::WorldSimApi(ASimModeBase* simmode)
     : simmode_(simmode)
 {
@@ -31,6 +33,15 @@ void WorldSimApi::restart()
     UAirBlueprintLib::RunCommandOnGameThread([this]() {
         simmode_->restart();
         }, true);
+}
+
+std::string WorldSimApi::getMap()
+{
+    FString CustomMapPath = Ucustom_map_loader::GetMapPath();
+    std::string pathString = std::string(TCHAR_TO_UTF8(*CustomMapPath));
+    size_t pos = pathString.find_last_of("/\\") + 1;
+    std::string customMapName = pathString.substr(pos, pathString.size()-pos-4);
+    return customMapName;
 }
 
 void WorldSimApi::pause(bool is_paused)

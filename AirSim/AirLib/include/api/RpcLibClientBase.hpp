@@ -30,6 +30,8 @@ public:
     void reset();
     void restart();
 
+    string getMap();
+
     ConnectionState getConnectionState();
     bool ping();
     int getClientVersion() const;

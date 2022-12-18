@@ -1,75 +1,105 @@
-# Formula Student Driverless Simulation
+# <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/flag-checkered.svg" width=18px style="webkit-filter: invert(0.5); filter: invert(0.5); background-color: transparent;"> Formula Student Driverless Simulation
 
-## [Documentation](https://fs-driverless.github.io/Formula-Student-Driverless-Simulator/) / [System overview](/docs/system-overview.md) / [Getting started guide](/docs/getting-started.md) / [Chat](https://github.com/FS-Driverless/Formula-Student-Driverless-Simulator/discussions)
+![banner](docs/images/banner.png)
 
-![Banner](docs/images/banner.png)
 
-This is a Formula Student Driverless Simulator (FSDS).
-FSDS is a community project with the goal to provide an end-to-end simulation for FS Driverless teams. 
-It simulates all commonly used sensors and is compatible with ROS. 
-This project has proven itself during [FS-Online 2020](https://formulastudentonline.com/) where 4 driverless teams competed.
-See [day 1](https://www.youtube.com/watch?v=TCgKwuLo3Eo), [day 2](https://www.youtube.com/watch?v=A-RHuWMZbig) and [day 3](https://www.youtube.com/watch?v=1RwY1cNMqMg).
-
-**Problems?** Ask questions in [Gitter chat](https://gitter.im/FS-Driverless/Formula-Student-Driverless-Simulator) or [open an issue](https://github.com/FS-Driverless/Formula-Student-Driverless-Simulator/issues).
-
-FSDS has been originally developed by your friends at [Formula Student Team Delft](https://www.fsteamdelft.nl/), [MIT Driverless](http://driverless.mit.edu/) and [FSEast](https://fseast.eu).
-
-## Repo Overview
-
-`/UE4Project` is the Unreal Engine 4 project.
-In here you will find everything that runs inside Unreal Engine.
-This includes the world, all assets and the AirSim server.
-The AirSim server uses the AirLib shared code (see `/AirSim/AirLib`).
-
-`/ros` is a ROS workspace that contains the `fsds_ros_bridge`. 
-This node can connect 1 autonomous system with the simulated world.
-
-`/ros2` is a ROS2 workspace that contains the `fsds_ros2_bridge`. 
-This node can connect 1 autonomous system with the simulated world.
-
-`/python` is a python client to connect with the simulator.
-
-`/AirSim` is a slimmed-down, hard-fork of the [AirSim](https://github.com/microsoft/AirSim) project.
-There is only C++ code located that is shared between ros-bridge and Unreal Engine.
-When AirSim is compiled, the AirLib binaries are placed within `/UE4Project/Plugins/AirSim/Source/AirLib`.
-
-`/operator` is a python project that offers a web GUI for officials to control the simulation, stores lap times and chooses what car is currently connected to the world.
-It launches the fsds_ros_bridge to connect an autonomous system to the Unreal world and stops the bridge when the autonomous system is no longer allowed to control the car.
-
-`/maps` contains all the custom maps created by contributors.
-
-This repo uses LFS for some large files. All files bigger than 90MB are added to LFS.
-
-## Installation
+## Documentation
 For installation and more information about the ROS and python interface, [check the documentation](https://fs-driverless.github.io/Formula-Student-Driverless-Simulator/)
 
-## Credits
-This project is based on the work of some amazing open-source projects. 
+## More information
 
-Primarily, [the AirSim project built by Microsoft and many open-source contributors](https://github.com/microsoft/AirSim). 
-Without it, we could have never done this.
+Some more information about the project can be found [here](https://github.com/EPFL-RT-Driverless/FSDS/tree/master/docs).
 
-Many game assets like the surrounding world are based on assets from the [Formula Student Technion Driverless AirSim fork](https://github.com/FSTDriverless/AirSim). 
-These assets made this project look as cool as it does now.
+# <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/regular/circle-play.svg" width=18px style="webkit-filter: invert(0.5); filter: invert(0.5); background-color: transparent;"> Run the simulator
+
+- Download the latest released version according to your OS
+
+- For Windows :
+    ```
+    .\initialize.cmd
+    ```
+    - You can then move and rename the folder however you want. Make sure you don't only move the .exe file
+    - Start `FDSD.exe`
+
+- For Linux :
+    ```
+    chmod +x initialize.sh && chmod +x FSDS.sh
+    ./initialize.sh
+    ```
+    - You can then move the folder and rename it however you want but don't modify the subfolders nor the files
+    - Run the simulator :
+
+    ```
+    ./FSDS.sh
+    ```
 
 
-![FSDS Preview](docs/images/fsds_pretty.png)
+- For MacOS :
+    ```
+    chmod +x initialize.sh
+    ./initialise.sh
+    ```
+    - You can then move the `FDSD.app` wherever you want
+    - Start `FDSD.app`
 
 
-## License
 
-Copyright (C) 2020 Formula Driverless Competition Simulator Contributors
 
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 2 of the License, or
-(at your option) any later version.
+# <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/windows.svg" width=18px style="webkit-filter: invert(0.5); filter: invert(0.5); background-color: transparent;"> Windows Installation 
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+### Prerequisites
+- [Unreal Engine 4.27](https://www.unrealengine.com/en-US/download)
+- [Microsoft Visual Studio 2019](https://visualstudio.microsoft.com/downloads/)
+- Make sure that you installed the **.NET desktop development** and **Desktop development with C++** workloads in VS 2019
 
-You should have received a copy of the GNU General Public License along
-with this program; if not, write to the Free Software Foundation, Inc.,
-51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+    ```
+    git clone https://github.com/EPFL-RT-Driverless/FSDS.git
+    ```
+- Make sure to have git-lfs installed and run `git lfs install` and `git lfs pull` in the FSDS folder
+- Open the Developer Command Prompt for VS 2019
+- Navigate to the FSDS/AirSim folder
+
+    ```
+    build.cmd
+    ```
+
+- Open UE4Editor 4.27 and open UE4Project/FSOnline.uproject
+- It might show an error like 'This project was made with a different version of the Unreal Engine'. In that case select `more options` and `skip conversion`.
+- When asked to rebuild the 'Blocks' and 'AirSim' modules, choose 'Yes'. This is the step where the plugin part of AirSim is compiled.
+- Enjoy the simulator!
+
+# <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width=18px style="webkit-filter: invert(0.5); filter: invert(0.5); background-color: transparent;"> Mac Installation 
+- [Unreal Engine 4.27](https://www.unrealengine.com/en-US/download)
+
+    ```
+    git clone https://github.com/EPFL-RT-Driverless/FSDS.git
+    cd FSDS
+    ```
+- Make sure to have git-lfs installed and run `git lfs install` and `git lfs pull` in the FSDS folder
+
+    ```
+    cd AirSim
+    ./setup.sh && ./build.sh
+    ```
+- Open UE4Editor 4.27 and open UE4Project/FSOnline.uproject
+- It might show an error like 'This project was made with a different version of the Unreal Engine'. In that case select `more options` and `skip conversion`.
+- When asked to rebuild the 'Blocks' and 'AirSim' modules, choose 'Yes'. This is the step where the plugin part of AirSim is compiled.
+- Enjoy the simulator!
+
+# <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/ubuntu.svg" width=18px style="webkit-filter: invert(0.5); filter: invert(0.5); background-color: transparent;"> Ubuntu Installation
+- Unfortunatly, the forked repository doesn't build on Linux. If you want to build the executable for Linux, you need to package it with the cross-compilation method. You won't be able to run the UE4Editor on Linux.
+- Complete all the steps of the [Windows Installation](https://github.com/EPFL-RT-Driverless/FSDS#Windows-Installation) section.
+- Install the cross-compilation toolchain for Windows. You can find the instructions [here](https://docs.unrealengine.com/4.27/en-US/SharingAndReleasing/Linux/GettingStarted/). Be sure to download the toolchain for the version 4.27 of Unreal Engine.
+- Some libs need to be installed and compiled for linux fortunately, we did it for you. Just run the following commands:
+    ```
+    cd FSDS/scripts
+    cp librpc.a UE4Project/Plugins/AirSim/Source/AirLib/deps/rpclib/lib
+    ```
+- Right click on FSDS/UE4Project/FSOnline.uproject and select `Generate Visual Studio project files` 
+- Open UE4Editor 4.27 and open FSDS/UE4Project/FSOnline.uproject
+- You can now build the project for Linux. To do so, go to  `File > Package Project > Build Configuration > Development` and then `File > Package Project > Linux > Linux`.
+- Enjoy the simulator!
+
+# <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/quote-left.svg" width=18px style="webkit-filter: invert(0.5); filter: invert(0.5); background-color: transparent;"> Credits
+
+This project is forked from [Formula Student Driverless Simulator](https://github.com/FS-Driverless/Formula-Student-Driverless-Simulator). Based on [AirSim](https://github.com/microsoft/AirSim).
