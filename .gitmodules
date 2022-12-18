@@ -1,9 +1,6 @@
 [submodule "ros/src/fs_msgs"]
 	path = ros/src/fs_msgs
 	url = https://github.com/FS-Driverless/fs_msgs.git
-[submodule "AirSim/external/rpclib"]
-	path = AirSim/external/rpclib
-	url = https://github.com/rpclib/rpclib.git
 [submodule "ros2/src/fs_msgs"]
 	path = ros2/src/fs_msgs
 	url = https://github.com/FS-Driverless/fs_msgs.git
