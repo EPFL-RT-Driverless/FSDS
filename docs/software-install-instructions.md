@@ -64,6 +64,38 @@ source ~/Formula-Student-Driverless-Simulator/ros/devel/setup.bash
 
 Be sure to replace `melodic` with your specific version
 
+## Install ROS Galactic/Humble (MacOS)
+
+You can install it with conda (via miniforge) and [robostack](https://robostack.github.io).
+```
+# if you don't have miniforge yet, install it first with brew
+brew install miniforge
+conda init zsh 
+# restart your shell
+
+# choose your distro: galactic or humble
+export DISTRO="galactic"
+
+# if you don't have mamba yet, install it first:
+conda install mamba -c conda-forge
+
+# now create a new environment
+mamba create -n ros_$DISTRO ros-$DISTRO-desktop python=3.9 -c robostack-experimental -c conda-forge --no-channel-priority --override-channels
+conda activate ros_$DISTRO
+
+# optionally, install some compiler packages if you want to e.g. build packages in a colcon_ws:
+mamba install compilers cmake pkg-config make ninja colcon-common-extensions
+
+# reload environment to activate required scripts before running anything
+conda deactivate
+conda activate ros_galactic
+
+# if you want to use rosdep, also do:
+mamba install rosdep
+rosdep init  # note: do not use sudo!
+rosdep update
+```
+
 ## Gui applications from WSL (Xming)
 By default, if you are running Windows Subsystem for Linux with Ubuntu, you can't run gui applications.
 This is super annoying if you want to use rqt applicatoins like rviz or rqt_plot.
