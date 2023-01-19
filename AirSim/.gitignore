@@ -330,3 +330,6 @@ ros/src/CMakeLists.txt
 
 # api docs
 PythonClient/docs/_build
+
+# created by setup.sh
+llvm.sh
